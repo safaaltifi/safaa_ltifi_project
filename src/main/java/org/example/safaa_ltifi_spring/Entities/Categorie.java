@@ -1,13 +1,12 @@
 package org.example.safaa_ltifi_spring.Entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 
 @Entity
@@ -21,5 +20,8 @@ public class Categorie {
     private Long id;
 
     private String nomCategorie;
+
+    @ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL)
+    private List<Produit> produits;
 }
 

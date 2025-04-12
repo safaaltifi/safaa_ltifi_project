@@ -1,5 +1,6 @@
 package org.example.safaa_ltifi_spring.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,10 +24,11 @@ public class Produit {
     @Enumerated(EnumType.STRING)
     private Etat etat;
 
-    @ManyToMany(mappedBy = "produits")
-    private List<Utilisateur> utilisateurs;
+    @ManyToOne
+    private Utilisateur utilisateur;
 
     @ManyToMany
+    @JsonIgnore
     private List<Categorie> categories;
 }
 

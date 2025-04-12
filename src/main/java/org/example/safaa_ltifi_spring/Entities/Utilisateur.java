@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,6 +26,8 @@ public class Utilisateur {
     @Enumerated(EnumType.STRING)
     private TypeUtilisateur typeUtilisateur;
 
-    @ManyToMany
+    @OneToMany(mappedBy = "utilisateur", cascade = CascadeType.ALL)
     private List<Produit> produits;
+
+
 }
