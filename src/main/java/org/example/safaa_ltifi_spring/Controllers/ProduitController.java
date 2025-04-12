@@ -17,9 +17,9 @@ public class ProduitController {
 
     private IProduitService produitService;
 
-    @PostMapping("/ajouter")
-    public ResponseEntity<Produit> ajouterProduit(@RequestBody Produit produit) {
-        Produit p = produitService.ajouterProduit(produit);
-        return new ResponseEntity<>(p, HttpStatus.CREATED);
+    @PostMapping()
+    public ResponseEntity<Produit> ajouterProduitEtCategories(@RequestBody Produit produit) {
+        Produit saved = produitService.ajouterProduit(produit);
+        return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 }

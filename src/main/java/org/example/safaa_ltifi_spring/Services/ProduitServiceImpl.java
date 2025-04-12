@@ -28,15 +28,22 @@ public class ProduitServiceImpl implements IProduitService {
     public Produit ajouterProduit(Produit p) {
         List<Categorie> categoriesFinales = new ArrayList<>();
 
-        for (Categorie c : p.getCategories()) {
-            Categorie existante = categorieRepository.findByNomCategorie(c.getNomCategorie());
-            if (existante == null) {
-                existante = categorieRepository.save(c);
+        // Vérifier si la liste des catégories n'est pas null
+        if (p.getCategories() != null) {
+            for (Categorie c : p.getCategories()) {
+                Categorie existante = categorieRepository.findByNomCategorie(c.getNomCategorie());
+                if (existante == null) {
+                    // Sauvegarder la nouvelle catégorie
+                    existante = categorieRepository.save(c);
+                }
+                // Ajouter la catégorie trouvée ou créée à la liste finale
+                categoriesFinales.add(existante);
             }
-            categoriesFinales.add(existante);
         }
 
+        // Associer les catégories au produit
         p.setCategories(categoriesFinales);
+        // Sauvegarder le produit
         return produitRepository.save(p);
     }
 

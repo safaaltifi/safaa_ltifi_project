@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,8 +28,7 @@ public class Produit {
     @ManyToOne
     private Utilisateur utilisateur;
 
-    @ManyToMany
-    @JsonIgnore
-    private List<Categorie> categories;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Categorie> categories = new ArrayList<>();
 }
 
